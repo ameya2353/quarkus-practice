@@ -4,6 +4,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
@@ -17,11 +18,13 @@ public interface PetServiceApiClient {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    List<String> getAllOwnedPets(String userId);
+    List<String> getAllOwnedPets(@QueryParam("userId") String userId);
 
     @Path("/add-pet")
     @POST
-    boolean addPetForUser(String userId , String petType ,  String petBreed);
+    boolean addPetForUser(@QueryParam("userId") String userId,
+                           @QueryParam("petType") String petType,
+                           @QueryParam("petBreed") String petBreed);
 
 
 }
