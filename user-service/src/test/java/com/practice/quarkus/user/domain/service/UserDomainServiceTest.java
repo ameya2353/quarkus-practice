@@ -1,3 +1,5 @@
+package com.practice.quarkus.user.domain.service;
+
 import com.practice.quarkus.user.domain.model.Pet;
 import com.practice.quarkus.user.domain.ports.incoming.FetchOwnedPetsPort;
 import com.practice.quarkus.user.domain.ports.outgoing.AddPetToTheOwner;

@@ -5,15 +5,22 @@ import com.practice.quarkus.user.domain.model.Pet;
 import com.practice.quarkus.user.domain.ports.incoming.FetchOwnedPetsPort;
 import com.practice.quarkus.user.domain.ports.outgoing.AddPetToTheOwner;
 import com.practice.quarkus.user.infrastructure.rest.api.PetServiceApiClient;
-import lombok.RequiredArgsConstructor;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import java.util.List;
 
-@RequiredArgsConstructor
+@ApplicationScoped
 public class UserDomainRepository implements FetchOwnedPetsPort, AddPetToTheOwner {
 
     private final PetServiceApiClient petServiceApi;
     private ObjectMapper mapper = new ObjectMapper();
+
+    @Inject
+    public UserDomainRepository(@RestClient PetServiceApiClient petServiceApi) {
+        this.petServiceApi = petServiceApi;
+    }
 
 
     @Override
